@@ -169,9 +169,16 @@ public class MyUserInterface extends javax.swing.JFrame
         
     	results=data.getMyresults();
     	
+    	DefaultTableModel model =(DefaultTableModel) resultsTB.getModel();
+    	int rowNumber=model.getRowCount();
+    	
+    	for(int i=rowNumber-1;i>0;i--)
+    	{
+        	model.removeRow(i);
+    	}
+    	
     	for (int i=0;i<161;i++)
 		{
-    		DefaultTableModel model =(DefaultTableModel) resultsTB.getModel();
     		model.addRow(new Object[] {results[i][0],results[i][1],results[i][2],results[i][3],results[i][4],results[i][5],results[i][6],results[i][7],
     				results[i][8],results[i][9],results[i][10],results[i][11],results[i][12]});
 		}
