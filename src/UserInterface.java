@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+/*
 public class UserInterface extends JFrame implements ActionListener
 {
 	public void Frame()
@@ -27,3 +27,4 @@ public class UserInterface extends JFrame implements ActionListener
 	
 	
 }
+*/
