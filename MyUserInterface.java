@@ -5,12 +5,15 @@
  */
 package my.UserInterface;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DDSS
  */
 public class MyUserInterface extends javax.swing.JFrame {
-
+    
+     int i=0;
     /**
      * Creates new form MyUserInterface
      */
@@ -170,6 +173,11 @@ public class MyUserInterface extends javax.swing.JFrame {
     private void goBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBTActionPerformed
         String temp=queryTF.getText();
         System.out.println(temp);
+        
+        DefaultTableModel model =(DefaultTableModel) resultsTB.getModel();
+        
+        model.addRow(new Object[] {1+i,2+i,3+i,4+i,5+i,6+i,7+i,8+i,9+i,10+i,11+i,12+i,13+i});
+        i++;
     }//GEN-LAST:event_goBTActionPerformed
 
     private void exitBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBTActionPerformed
