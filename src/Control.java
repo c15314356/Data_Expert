@@ -21,20 +21,24 @@ public class Control
 		*/
 		
 		List<String> myarray= new ArrayList<String>();
+		
 		for(int i=0;i<3;i++)
 		{
 			System.out.println("Enter in a String");
 			Scanner temp=new Scanner(System.in);
 			String ans=temp.nextLine();
 			myarray.add(ans);
-			temp.close();
 		}
 		
 		for (String element:myarray)
 		{
 			System.out.println(element);
+			String[] word=element.split("\\s+");
 			
-			
+			for(String words:word)
+			{
+				System.out.println(words);
+			}
 		}
 		
 	}
