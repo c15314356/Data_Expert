@@ -1,14 +1,16 @@
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
 public class MyUserInterface extends javax.swing.JFrame 
 {
-    String [][] results=new String[161][13];
-     int i=0;
-    /**
-     * Creates new form MyUserInterface
-     */
+    List<String> allRows=new ArrayList<String>();
+    List<String> colNames=new ArrayList<String>();
+    int numberOfCols;
+    int numberOfRows;
+    int j=0;
+     
     public MyUserInterface() 
     {
         initComponents();
@@ -115,11 +117,13 @@ public class MyUserInterface extends javax.swing.JFrame
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
 
         resultsTB.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
+            new Object [][] 
+            {
+            	
             },
-            new String [] {
-                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"
+            new String [] 
+            {
+            
             }
         ));
         jScrollPane1.setViewportView(resultsTB);
@@ -167,21 +171,209 @@ public class MyUserInterface extends javax.swing.JFrame
         //connect to database
     	data.Connect();
         
-    	results=data.getMyresults();
+    	allRows=data.getAllRows();
+    	colNames=data.getColNameList();
     	
     	DefaultTableModel model =(DefaultTableModel) resultsTB.getModel();
-    	int rowNumber=model.getRowCount();
     	
-    	for(int i=rowNumber-1;i>0;i--)
+    	//gets the number of cols and rows
+    	numberOfCols=colNames.size();
+    	numberOfRows=(allRows.size()/numberOfCols);
+    	int CurRowNumber=model.getRowCount();
+    	
+    	//removes all rows from table
+    	for(int i=CurRowNumber;i>0;i--)
     	{
         	model.removeRow(i);
     	}
     	
-    	for (int i=0;i<161;i++)
-		{
-    		model.addRow(new Object[] {results[i][0],results[i][1],results[i][2],results[i][3],results[i][4],results[i][5],results[i][6],results[i][7],
-    				results[i][8],results[i][9],results[i][10],results[i][11],results[i][12]});
-		}
+    	//model.setColumnCount(numberOfCols);
+    	
+    	//add Columns to table
+    	for(int i=0;i<numberOfCols;i++)
+    	{
+    		model.addColumn(colNames.get(i));
+    	}
+    	
+    	switch(numberOfCols)
+    	{
+    	case 1:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 2:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 3:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 4:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 5:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 6:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 7:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 8:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 9:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 10:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 11:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 12:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 13:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 14:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 15:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
+        				allRows.get(14+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 16:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
+        				allRows.get(14+j),allRows.get(15+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 17:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
+        				allRows.get(14+j),allRows.get(15+j),allRows.get(16+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 18:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
+        				allRows.get(14+j),allRows.get(15+j),allRows.get(16+j),allRows.get(17+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 19:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
+        				allRows.get(14+j),allRows.get(15+j),allRows.get(16+j),allRows.get(17+j),allRows.get(18+j)});
+        		j+=numberOfCols;
+    		}
+    		break;
+    	case 20:
+        	for (int i=0;i<numberOfRows;i++)
+    		{
+        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
+        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
+        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
+        				allRows.get(14+j),allRows.get(15+j),allRows.get(16+j),allRows.get(17+j),allRows.get(18+j),
+        				allRows.get(19+j)});
+        		j+=numberOfCols;
+    		}
+        default:
+        	System.out.println("SQL statements are only supported up until 20 cols");
+        	break;
+    	}
         
     }//GEN-LAST:event_goBTActionPerformed
 
