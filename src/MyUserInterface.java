@@ -159,11 +159,15 @@ public class MyUserInterface extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void queryTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryTFActionPerformed
+    //Action performed
+    private void queryTFActionPerformed(java.awt.event.ActionEvent evt) 
+    {
         queryTF.setText("");
-    }//GEN-LAST:event_queryTFActionPerformed
+    }
 
-    private void goBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBTActionPerformed
+    //action performed
+    private void goBTActionPerformed(java.awt.event.ActionEvent evt) 
+    {
     	//set value entered into text field to temporary variable
         String temp=queryTF.getText();
         //Create a new object of DatabaseReader
@@ -171,6 +175,12 @@ public class MyUserInterface extends javax.swing.JFrame
         //connect to database
     	data.Connect();
         
+    	allRows.clear();
+    	colNames.clear();
+    	
+		System.out.println(allRows+"---------------------------------------------------------------------");
+		System.out.println(colNames+"-------------------------------------------------------------------------");
+    	
     	allRows=data.getAllRows();
     	colNames=data.getColNameList();
     	

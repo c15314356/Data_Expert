@@ -30,6 +30,12 @@ public class DatabaseReader
 			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/xe",uname,upass);
 			Statement func = con.createStatement();
 			
+			colNameList.clear();
+			allRows.clear();
+			
+			System.out.println(colNameList+"---------------------------------------------------------------------");
+			System.out.println(allRows+"-------------------------------------------------------------------------");
+			
 			ResultSet results = func.executeQuery(statement);
 			ResultSetMetaData resultsMD=results.getMetaData();
 			
@@ -54,10 +60,13 @@ public class DatabaseReader
 			}
 			System.out.println("\n"+allRows.size());
 		}
+		
 		catch (ClassNotFoundException e) 
 		{
 			e.printStackTrace();
-		} catch (SQLException e) 
+		} 
+		
+		catch (SQLException e) 
 		{
 			e.printStackTrace();
 		} 
