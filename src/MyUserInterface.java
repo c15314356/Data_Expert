@@ -163,26 +163,9 @@ public class MyUserInterface extends javax.swing.JFrame
     private void tableChange()
     {
     	
-    	String[] myarray=new String[10];
-    	String[][] myarray2=new String[10][10];
     	int j=0;
     	
-    	
-    	for(int i=0;i<10;i++)
-    	{
-    		myarray[i]="hello"+i;
-    	}
-    	
-
-    	for(int i=0;i<10;i++)
-    	{
-    		
-    		for(int l=0;l<10;l++)
-    		{
-    			myarray2[i][l]="hello"+i+l;
-    		}
-    	}
-    	
+    	//clears the array lists of all rows and col names
     	allRows.clear();
     	colNames.clear();
     	
@@ -207,8 +190,7 @@ public class MyUserInterface extends javax.swing.JFrame
     	numberOfRows=(allRows.size()/numberOfCols);
     	
     	
-    	
-    	//JTable table = new JTable(myarray2, myarray);
+    	//Reset Table Completely
     	model.fireTableDataChanged();
     	model.setRowCount(0);
     	model.setColumnCount(0);
@@ -219,11 +201,7 @@ public class MyUserInterface extends javax.swing.JFrame
     		model.addColumn(colNames.get(i));
     	}
     	
-//    	for(int i=0;i<10;i++)
-//    	{
-//    		model.addRow(myarray2[i]);
-//    	}
-    	
+    	//add Rows to Table supports up to 20 columns for readability
     	switch(numberOfCols)
     	{
     	case 1:
@@ -403,9 +381,6 @@ public class MyUserInterface extends javax.swing.JFrame
         	System.out.println("SQL statements are only supported up until 20 cols");
         	break;
     	}
-    	
-
-    	//adds all Rows to table based on how many columns there are
     }
     //Action performed
     private void queryTFActionPerformed(java.awt.event.ActionEvent evt) 

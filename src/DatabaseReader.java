@@ -32,16 +32,19 @@ public class DatabaseReader
 	{
 		try
 		{
+			//Connecting to database and create an statement to store query
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/xe",uname,upass);
 			Statement func = con.createStatement();
 			
+			//clears lists of any data
 			colNameList.clear();
-			allRows.clear();	
+			allRows.clear();
 			
 			ResultSet results = func.executeQuery(statement);
 			ResultSetMetaData resultsMD=results.getMetaData();
 			
+			//This creates and stores the amount of columns located in the query
 			int colNumber=resultsMD.getColumnCount();
 			
 			//this loop will find all col names and add them to colNameList
@@ -51,15 +54,13 @@ public class DatabaseReader
 			}
 			
 			
-			//this loop will
+			//this loop will find all row data and add them to the allrows list
 			while(results.next())
 			{
 				for(int i=1;i<colNumber+1;i++)
 				{
-					System.out.println(results.getString(i)+"\t");
 					allRows.add(results.getString(i));
 				}
-				System.out.println("\n");
 			}
 		}
 		
@@ -73,6 +74,7 @@ public class DatabaseReader
 			e.printStackTrace();
 		} 
 	}
+	
 	//getters and setters for DatabaseReader
 	public String getUname() 
 	{
