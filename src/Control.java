@@ -7,17 +7,21 @@ import java.util.Scanner;
 public class Control 
 {
 	public static void main(String[] args)
+	
 	{	
-		
-		//asks for what query the user would like to run
-		System.out.println("Please enter a query you would like to run....");
+		DatabaseReader data=new DatabaseReader();
 		Scanner ans=new Scanner(System.in);
-		String func=ans.nextLine();
-		ans.close();
-		
-		//runs DatabaseReader class
-		DatabaseReader data=new DatabaseReader(func);
-		data.Connect();
+		//asks for what query the user would like to run
+		for(int i=0;i<2;i++)
+		{
+			System.out.println("Please enter a query you would like to run....");
+			String func=ans.nextLine();
+			
+			//runs DatabaseReader class
+			data.setStatement(func);
+			data.Connect();
+		}
+
 		
 		
 		/*

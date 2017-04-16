@@ -1,19 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class MyUserInterface extends javax.swing.JFrame 
+public class MyUserInterfaceBackup extends javax.swing.JFrame 
 {
     List<String> allRows=new ArrayList<String>();
     List<String> colNames=new ArrayList<String>();
     int numberOfCols;
     int numberOfRows;
+    int j=0;
+    int t=-1;
     
-    DatabaseReader data=new DatabaseReader();
+    DatabaseReader[] data= new DatabaseReader[100];
      
-    public MyUserInterface() 
+    public MyUserInterfaceBackup() 
     {
         initComponents();
     }
@@ -160,70 +161,62 @@ public class MyUserInterface extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tableChange()
+    //Action performed
+    private void queryTFActionPerformed(java.awt.event.ActionEvent evt) 
     {
-    	
-    	String[] myarray=new String[10];
-    	String[][] myarray2=new String[10][10];
-    	int j=0;
-    	
-    	
-    	for(int i=0;i<10;i++)
-    	{
-    		myarray[i]="hello"+i;
-    	}
-    	
+        queryTF.setText("");
+    }
 
-    	for(int i=0;i<10;i++)
-    	{
-    		
-    		for(int l=0;l<10;l++)
-    		{
-    			myarray2[i][l]="hello"+i+l;
-    		}
-    	}
-    	
+    //action performed
+    private void goBTActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+    	t++;
+    	//set value entered into text field to temporary variable
+        String temp=queryTF.getText();
+      //Create a new object of DatabaseReader
+        data[t]=new DatabaseReader(temp);
+       // data.setStatement(temp);
+        
+        //connect to database
+    	data[t].Connect();
+        
     	allRows.clear();
     	colNames.clear();
     	
-    	//set value entered into text field to temporary variable
-        String temp=queryTF.getText();
-        
-        //send query to DatabaseReader
-        data.setStatement(temp);
-        
-        //connect to database
-    	data.Connect();
+		System.out.println(allRows+"---------------------------------------------------------------------");
+		System.out.println(colNames+"-------------------------------------------------------------------------");
     	
-    	//stores all rows and column names list in two array lists
-    	allRows=data.getAllRows();
-    	colNames=data.getColNameList();
+    	allRows=data[t].getAllRows();
+    	colNames=data[t].getColNameList();
     	
-    	//set default table model
     	DefaultTableModel model =(DefaultTableModel) resultsTB.getModel();
     	
     	//gets the number of cols and rows
     	numberOfCols=colNames.size();
     	numberOfRows=(allRows.size()/numberOfCols);
+    	int CurRowNumber=model.getRowCount();
+    	System.out.println("(BEFORE)The current Row Number is :"+CurRowNumber);
     	
-    	
-    	
-    	//JTable table = new JTable(myarray2, myarray);
-    	model.fireTableDataChanged();
-    	model.setRowCount(0);
-    	model.setColumnCount(0);
     	
     	//add Columns to table
     	for(int i=0;i<numberOfCols;i++)
     	{
     		model.addColumn(colNames.get(i));
     	}
+    	model.setColumnCount(numberOfCols);
     	
-//    	for(int i=0;i<10;i++)
+    	//removes all rows from table
+//    	for(int i=CurRowNumber;i>0;i--)
 //    	{
-//    		model.addRow(myarray2[i]);
+//        	model.removeRow(i);
 //    	}
     	
+    	//JTable table = new JTable(myarray2, myarray);
+    	model.fireTableDataChanged();
+    	model.setRowCount(0);
+    	model.setColumnCount(0);
+    	
+    	//adds all Rows to table based on how many columns there are
     	switch(numberOfCols)
     	{
     	case 1:
@@ -403,21 +396,6 @@ public class MyUserInterface extends javax.swing.JFrame
         	System.out.println("SQL statements are only supported up until 20 cols");
         	break;
     	}
-    	
-
-    	//adds all Rows to table based on how many columns there are
-    }
-    //Action performed
-    private void queryTFActionPerformed(java.awt.event.ActionEvent evt) 
-    {
-        queryTF.setText("");
-    }
-
-    //action performed
-    private void goBTActionPerformed(java.awt.event.ActionEvent evt) 
-    {
-    	//calls the table changed/ table creation method
-    	tableChange();
     }
 
     //Exit program once exit button is clicked

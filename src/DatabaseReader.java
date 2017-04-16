@@ -22,6 +22,12 @@ public class DatabaseReader
 		this.statement=statement;
 	}
 	
+	public DatabaseReader() 
+	{
+		this.uname="Builder2";
+		this.upass="br0adband1";
+	}
+
 	public void Connect()
 	{
 		try
@@ -31,10 +37,7 @@ public class DatabaseReader
 			Statement func = con.createStatement();
 			
 			colNameList.clear();
-			allRows.clear();
-			
-			System.out.println(colNameList+"---------------------------------------------------------------------");
-			System.out.println(allRows+"-------------------------------------------------------------------------");
+			allRows.clear();	
 			
 			ResultSet results = func.executeQuery(statement);
 			ResultSetMetaData resultsMD=results.getMetaData();
@@ -58,7 +61,6 @@ public class DatabaseReader
 				}
 				System.out.println("\n");
 			}
-			System.out.println("\n"+allRows.size());
 		}
 		
 		catch (ClassNotFoundException e) 
@@ -102,19 +104,23 @@ public class DatabaseReader
 		this.statement = statement;
 	}
 
-	public List<String> getColNameList() {
+	public List<String> getColNameList() 
+	{
 		return colNameList;
 	}
 
-	public void setColNameList(List<String> colNameList) {
+	public void setColNameList(List<String> colNameList) 
+	{
 		this.colNameList = colNameList;
 	}
 
-	public List<String> getAllRows() {
+	public List<String> getAllRows() 
+	{
 		return allRows;
 	}
 
-	public void setAllRows(List<String> allRows) {
+	public void setAllRows(List<String> allRows) 
+	{
 		this.allRows = allRows;
 	}
 
