@@ -1,16 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class MyUserInterface extends javax.swing.JFrame 
 {
-    List<String> allRows=new ArrayList<String>();
-    List<String> colNames=new ArrayList<String>();
-    int numberOfCols;
-    int numberOfRows;
+ 
+	// Variables declaration
+	private static final long serialVersionUID = 1L;
+    private List<String> allRows=new ArrayList<String>();
+    private List<String> colNames=new ArrayList<String>();
+    private int numberOfCols;
+    private int numberOfRows;
+    private javax.swing.JButton exitBT;
+    private javax.swing.JButton goBT;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField queryTF;
+    private javax.swing.JTable resultsTB;
+    // End of variables declaration
     
+    //Creates initial Object for connection to database/query
     DatabaseReader data=new DatabaseReader();
      
     public MyUserInterface() 
@@ -18,7 +30,6 @@ public class MyUserInterface extends javax.swing.JFrame
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() 
     {
 
@@ -36,57 +47,56 @@ public class MyUserInterface extends javax.swing.JFrame
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 271, Short.MAX_VALUE)
-        );
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) .addGap(0, 0, Short.MAX_VALUE) );
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 271, Short.MAX_VALUE) );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 102));
 
-        jLabel2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Consolas", 0, 12)); 
         jLabel2.setForeground(new java.awt.Color(153, 102, 255));
         jLabel2.setText("By Devidas Savickas");
 
         queryTF.setBackground(new java.awt.Color(255, 255, 204));
-        queryTF.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        queryTF.setFont(new java.awt.Font("Consolas", 0, 12));
         queryTF.setForeground(new java.awt.Color(102, 51, 255));
         queryTF.setText("Enter in SQL query to run.....");
         queryTF.setBorder(null);
-        queryTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        queryTF.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
                 queryTFActionPerformed(evt);
             }
         });
 
         goBT.setBackground(new java.awt.Color(204, 255, 204));
-        goBT.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        goBT.setFont(new java.awt.Font("Consolas", 0, 12));
         goBT.setForeground(new java.awt.Color(153, 102, 255));
         goBT.setText("Go");
-        goBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        goBT.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
                 goBTActionPerformed(evt);
             }
         });
 
         exitBT.setBackground(new java.awt.Color(204, 255, 204));
-        exitBT.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
+        exitBT.setFont(new java.awt.Font("Consolas", 0, 11));
         exitBT.setText("Exit");
-        exitBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitBT.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
                 exitBTActionPerformed(evt);
             }
         });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -102,8 +112,7 @@ public class MyUserInterface extends javax.swing.JFrame
                         .addComponent(jLabel2)))
                 .addGap(38, 38, 38))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
@@ -158,12 +167,10 @@ public class MyUserInterface extends javax.swing.JFrame
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void tableChange()
     {
-    	
-    	int j=0;
     	
     	//clears the array lists of all rows and col names
     	allRows.clear();
@@ -189,209 +196,29 @@ public class MyUserInterface extends javax.swing.JFrame
     	numberOfCols=colNames.size();
     	numberOfRows=(allRows.size()/numberOfCols);
     	
+    	TableFiller fill=new TableFiller(numberOfCols,numberOfRows,model,allRows,colNames);
     	
     	//Reset Table Completely
-    	model.fireTableDataChanged();
-    	model.setRowCount(0);
-    	model.setColumnCount(0);
+    	fill.reset();
     	
     	//add Columns to table
-    	for(int i=0;i<numberOfCols;i++)
-    	{
-    		model.addColumn(colNames.get(i));
-    	}
+    	fill.cols();
     	
-    	//add Rows to Table supports up to 20 columns for readability
-    	switch(numberOfCols)
-    	{
-    	case 1:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 2:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 3:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 4:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 5:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 6:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 7:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 8:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 9:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 10:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 11:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 12:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 13:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 14:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 15:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
-        				allRows.get(14+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 16:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
-        				allRows.get(14+j),allRows.get(15+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 17:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
-        				allRows.get(14+j),allRows.get(15+j),allRows.get(16+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 18:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
-        				allRows.get(14+j),allRows.get(15+j),allRows.get(16+j),allRows.get(17+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 19:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
-        				allRows.get(14+j),allRows.get(15+j),allRows.get(16+j),allRows.get(17+j),allRows.get(18+j)});
-        		j+=numberOfCols;
-    		}
-    		break;
-    	case 20:
-        	for (int i=0;i<numberOfRows;i++)
-    		{
-        		model.addRow(new Object[] {allRows.get(0+j),allRows.get(1+j),allRows.get(2+j),allRows.get(3+j),
-        				allRows.get(4+j),allRows.get(5+j),allRows.get(6+j),allRows.get(7+j),allRows.get(8+j),
-        				allRows.get(9+j),allRows.get(10+j),allRows.get(11+j),allRows.get(12+j),allRows.get(13+j),
-        				allRows.get(14+j),allRows.get(15+j),allRows.get(16+j),allRows.get(17+j),allRows.get(18+j),
-        				allRows.get(19+j)});
-        		j+=numberOfCols;
-    		}
-        default:
-        	System.out.println("SQL statements are only supported up until 20 cols");
-        	break;
-    	}
+    	//add Rows to Table supports up to 20 columns for readability in this GUI
+    	fill.rows();
     }
-    //Action performed
+    
+    //Action performed on textfield
     private void queryTFActionPerformed(java.awt.event.ActionEvent evt) 
     {
-        queryTF.setText("");
+    	//calls the table changed/ table creation method when enter is pressed
+        tableChange();
     }
-
-    //action performed
+    
+    //Action performed on go button
     private void goBTActionPerformed(java.awt.event.ActionEvent evt) 
     {
-    	//calls the table changed/ table creation method
+    	//calls the table changed/ table creation method when button clicked
     	tableChange();
     }
 
@@ -399,59 +226,5 @@ public class MyUserInterface extends javax.swing.JFrame
     private void exitBTActionPerformed(java.awt.event.ActionEvent evt) 
     {
         System.exit(0);
-    }
-
-    //Main
-    public static void main(String args[]) 
-    {
-        try 
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
-            {
-                if ("Nimbus".equals(info.getName())) 
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } 
-        catch (ClassNotFoundException ex) 
-        {
-            java.util.logging.Logger.getLogger(MyUserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-        catch (InstantiationException ex) 
-        {
-            java.util.logging.Logger.getLogger(MyUserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-        catch (IllegalAccessException ex) 
-        {
-            java.util.logging.Logger.getLogger(MyUserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-        catch (javax.swing.UnsupportedLookAndFeelException ex) 
-        {
-            java.util.logging.Logger.getLogger(MyUserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            public void run() 
-            {
-                new MyUserInterface().setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration
-    private javax.swing.JButton exitBT;
-    private javax.swing.JButton goBT;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField queryTF;
-    private javax.swing.JTable resultsTB;
-    // End of variables declaration
-    
+    }  
 }

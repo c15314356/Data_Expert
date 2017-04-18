@@ -27,6 +27,7 @@ public class DatabaseReader
 		this.uname="Builder2";
 		this.upass="br0adband1";
 	}
+	
 
 	public void Connect()
 	{
@@ -64,14 +65,17 @@ public class DatabaseReader
 			}
 		}
 		
+		//prints our problems with execution
 		catch (ClassNotFoundException e) 
 		{
 			e.printStackTrace();
+			System.out.println("there is problem connected to the database");
 		} 
 		
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
+			System.out.println("there is a problem with that SQL statement");
 		} 
 	}
 	
