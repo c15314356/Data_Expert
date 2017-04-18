@@ -62,7 +62,7 @@ public class MyUserInterface extends javax.swing.JFrame
 
         jLabel2.setFont(new java.awt.Font("Consolas", 0, 12)); 
         jLabel2.setForeground(new java.awt.Color(153, 102, 255));
-        jLabel2.setText("By Devidas Savickas");
+        jLabel2.setText("By Deividas Savickas");
 
         queryTF.setBackground(new java.awt.Color(255, 255, 204));
         queryTF.setFont(new java.awt.Font("Consolas", 0, 12));
