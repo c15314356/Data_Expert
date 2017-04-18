@@ -1,3 +1,9 @@
+/*
+ * By Deividas Savickas
+ * C15314356
+ * 18/04/17
+ * Java Data Expert Assignment
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

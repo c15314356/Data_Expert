@@ -1,3 +1,9 @@
+/*
+ * By Deividas Savickas
+ * C15314356
+ * 18/04/17
+ * Java Data Expert Assignment
+ */
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
